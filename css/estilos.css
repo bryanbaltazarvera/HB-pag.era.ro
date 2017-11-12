@@ -5,52 +5,40 @@
 body{
 	background: linear-gradient(0deg, #CCC, #FFF);
 	background-repeat: no-repeat;
+	line-height: 1.5em;
+	font-family: trebuchet MS;
 }
 
 #cabecera{
-	background: linear-gradient(45deg, #133423, #44B27A);
-	height: 140px;
-	position: relative;
+	background-color: #414141;
+	height: 120px;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+
 }
 
 .logo{
-	background-color: rgba(0,0,255,0);
-	display: inline-block;
-	margin: 0 50px;
-
-
-	justify-content: center;
-	align-content: center;
+	float: left;
+	padding: .1% 0 0 3%;
+	text-decoration: none;
 }
 
 #cabecera .logo img{
-	height: 120px;
+	height: 100px;
 	padding: 10px;
 }
 
 #cabecera .descripcion{
-	font-family: Arial;
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #FFF;
 	position: absolute;
-	bottom: 40px;
-	left: 200px;
+	bottom: 35px;
+	left: 13%;
 	text-decoration: none;
 }
-
-@media(max-width:800px){
-	.logo{
-	display:block;
-	margin:auto;
-	}
-	.nav{
-		display:block;
-		margin:auto;
-	}
-
-}
-
 /*-----------MENU----------*/
 nav{
 	float: right;
@@ -72,16 +60,16 @@ nav ul li a{
 	display: block;
 	padding: 0 15px;
 	color: #FFF;
-	font-family: sans-serif;
-	height: 140px;
-    transition: background .3s;
+	height: 120px;
+    transition: background .4s;
+    font-weight: bold;
 }
 
 nav ul li a:hover {
-	background: #FCF800;
+	background: #28CC9E;
 	color: #000;
     transition: background .1s;
-	height: 140px;
+	height: 120px;
 }
 
 nav ul li:hover span{
@@ -90,7 +78,7 @@ nav ul li:hover span{
 
 nav ul li a span{
 	position: static;
-	padding-top: 66px;
+	padding-top: 50px;
 	display: inline-block;
 }
 
@@ -118,20 +106,14 @@ nav ul li a .contactenos{
 }
 
 
-@media (min-width){
-	nav ul li a span{
-	color: red;
-}
-}
-
-}
 
 /*--------------PORTADA---------------*/
 #cuerpo {
 	background-color: #FFF; 
 	width: 85%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 20px auto;
+	box-shadow: 0 0 10px rgba(0,0,0,.5);
+	margin-top: 150px; 
 }
 
 #cuerpo #portada{
@@ -155,7 +137,6 @@ nav ul li a .contactenos{
 #cuerpo #contenido span{
 	text-align: center;
 	font-size:1.1em;
-	font-family: arial;
 	font-weight: bold;
 	display: grid;
 }
@@ -181,21 +162,51 @@ nav ul li a .contactenos{
 } 
 
 
-@media(max-width: 1028px){
+/*****************************************/
 
-	.Cont_primaria, .Cont_inicial, .Cont_secundaria{
-	height:300px;
-	width:200px;
-} 
-
+.container {
+    position: relative;
+   	width: 20em;
 }
 
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .7s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container:hover .image {
+  opacity: 0.4;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
 
 /*--------------PIE-------------------*/
 
 #pie_pagina{
 	height: 140px;
-	background-color: #133423;
+	background-color: #26252C;
 	padding: 10px;
 	color: white;
 	margin-top: 2%;
