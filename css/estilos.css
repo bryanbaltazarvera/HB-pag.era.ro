@@ -10,13 +10,13 @@ body{
 }
 
 #cabecera{
-	background-color: #414141;
+	background-color: #172b23;
 	height: 120px;
 	position: fixed;
 	width: 100%;
 	left: 0;
 	top: 0;
-
+	z-index: 100;
 }
 
 .logo{
@@ -44,7 +44,7 @@ nav{
 	float: right;
 }
 
-nav ul{ 
+nav ul{
 	list-style: none;
 	padding-right: 10px;
 	margin: 0;
@@ -57,8 +57,8 @@ nav ul li{
 
 nav ul li a{
 	text-decoration: none;
-	display: block;
-	padding: 0 15px;
+	display: inline-block;
+	padding: 30px 15px 0  15px;
 	color: #FFF;
 	height: 120px;
     transition: background .4s;
@@ -66,10 +66,10 @@ nav ul li a{
 }
 
 nav ul li a:hover {
-	background: #28CC9E;
+	background: linear-gradient(-30deg, #F4EE9D, #F8F6DD);
 	color: #000;
-    transition: background .1s;
-	height: 120px;
+  transition: background .1s;
+	height: 90px;
 }
 
 nav ul li:hover span{
@@ -78,8 +78,16 @@ nav ul li:hover span{
 
 nav ul li a span{
 	position: static;
-	padding-top: 50px;
-	display: inline-block;
+	padding-top: 0;
+	display: flex;
+
+}
+
+nav ul li a span img{
+	width: 40px;
+	display: flex;
+	margin-left: 15%;
+	padding: 0;
 }
 
 nav ul li a .inicio{
@@ -109,11 +117,11 @@ nav ul li a .contactenos{
 
 /*--------------PORTADA---------------*/
 #cuerpo {
-	background-color: #FFF; 
+	background-color: #FFF;
 	width: 85%;
 	margin: 20px auto;
 	box-shadow: 0 0 10px rgba(0,0,0,.5);
-	margin-top: 150px; 
+	margin-top: 150px;
 }
 
 #cuerpo #portada{
@@ -125,13 +133,16 @@ nav ul li a .contactenos{
 #cuerpo #portada .img_portada{
 	width: 94%;
 	height: 50vh;
-	margin: 15px;
+	margin: 30px 15px 15px 15px;
+	box-shadow: 5px 5px 10px rgba(0,0,0,.8);
 }
 
 /*---------------CONTENEDORES---------------*/
 #cuerpo #contenido{
- display: flex;
+ display:flex;
  justify-content: center;
+ padding-left:auto;
+ padding-right:auto;
  }
 
 #cuerpo #contenido span{
@@ -141,25 +152,10 @@ nav ul li a .contactenos{
 	display: grid;
 }
 
-.inicial{
+.desplegable{
 	display: inline-block;
+	margin: 3%;
 }
-
-.primaria{
-	display: inline-block;
-}
-
-.secundaria{
-	display: inline-block;
-}
-
-.Cont_primaria, .Cont_inicial, .Cont_secundaria{
-	display: inline-block;
-	background: linear-gradient(-30deg, #F4EE9D, #F8F6DD);
-	height:400px;
-	width:300px;
-	margin: 0px 30px 20px 30px;
-} 
 
 
 /*****************************************/
@@ -176,6 +172,7 @@ nav ul li a .contactenos{
   height: auto;
   transition: .7s ease;
   backface-visibility: hidden;
+	border-radius: 25px;
 }
 
 .middle {
@@ -195,23 +192,261 @@ nav ul li a .contactenos{
   opacity: 1;
 }
 
-.text {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+.botonCent {
+  background-color: #172b23;
+  color: #FFF;
+	cursor: pointer;
+	border: 3px solid;
+	border-radius: 50px;
+  font-size: 3em;
+	padding: 0 13px 0 13px;
 }
+
+
+/************** BOTONES ***************/
+.btn {
+	text-align: center;
+	padding: .6em .8em .8em;
+	border: none;
+	color: white;
+	background: lightgray;
+	margin: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: inset 0 -.2em rgba(0,0,0, .2);
+	outline: 0;
+	transition: .2s;
+	will-change: transform;
+}
+.btn.primary {
+	background: #23cc77;
+}
+.btn.warning {
+	background: #CF0A2C;
+}
+.btn.cerrar {
+	background: rgba(0, 0, 0, 0);
+	color: rgba(0, 0, 0, .5);
+	box-shadow: inset 0 -.2em rgba(0,0,0, 0);
+	position:absolute;
+	left: 69em;
+	bottom: 368px;
+}
+
+.btn.cerrar:hover {
+	background: #CF0A2C;
+	color: #fff;
+	font-weight: bold;
+}
+
+.btn:active {
+	transform: scale(.9);
+}
+.overlay {
+	background: rgba(0,0,0,.5); /*le da unaopacidad de .5*/
+	position: fixed; /*para que el modal siempre este sobre la pagina*/
+	left: 0; /*Estira todo a la izquierda*/
+	right: 0; /*Estira todo a la derecha*/
+	top: 0; /*Estira todo para arriba*/
+	bottom: 0; /*Estira todo para abajo*/
+	display: flex;
+	align-items: center; /*Alineacion vertical*/
+	justify-content: center; /*Alineacion horizontal*/
+	transition: 1.1s ease-in;
+	opacity: 0;
+	visibility: hidden;
+}
+.overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+.modal {
+	/*width: 200px;*/
+	/*height: 200px;*/
+	width: 500px; /*Si se quiere que sea respoonsive colocamos max-width*/
+	background: white;
+	/*animation: name time estado;*/
+	padding: 2em; /*1em = 16px*/
+	border-radius: .5em;
+	text-align: center;
+}
+/*@keyframes animationIn {*/
+@keyframes modalIn {
+	0% {
+		transform: translateY(-3000px);
+	}
+	60% {
+		transform: translateY(25px);
+	}
+	75% {
+		transform: translateY(-10px);
+	}
+	90% {
+		transform: translateY(5px);
+	}
+}
+
+/*@keyframes animationOut {*/
+@keyframes modalOut {
+	0% {
+		transform: translateY(5px);
+	}
+	60% {
+		transform: translateY(-10px);
+	}
+	75% {
+		transform: translateY(25px);
+	}
+	100% {
+		transform: translateY(-3000px);
+	}
+}
+
+/*************************************/
 
 /*--------------PIE-------------------*/
 
-#pie_pagina{
-	height: 140px;
-	background-color: #26252C;
-	padding: 10px;
-	color: white;
-	margin-top: 2%;
+		.icon.style2 {
+			color: #00f0ff;
+		}
+
+	.icon {
+		text-decoration: none;
+		border-bottom: none;
+		position: relative;
+	}
+
+		.icon:before {
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			font-family: FontAwesome;
+			font-style: normal;
+			font-weight: normal;
+			text-transform: none !important;
+		}
+/* PARA LOS ICONOS NO BORRAR VALE -.-*/
+		.icon > .label {
+			display: none;
+		}
+
+/* List */
+
+	ul {
+		list-style: disc;
+		margin: 0 0 2em 0;
+		padding-left: 1em;
+	}
+
+		ul li {
+			padding-left: 0.5em;
+		}
+
+		ul.icons {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+		}
+
+			ul.icons li {
+				display: inline-block;
+				padding: 0 1em 0 0;
+			}
+
+				ul.icons li:last-child {
+					padding-right: 0 !important;
+				}
+
+
+	#footer {
+		padding: 2.5em 0 0.5em 0 ;
+		background-color: #172b23;
+		text-align: center;
+	}
+
+		#footer .icons {
+			font-size: 1.25em;
+		}
+
+			#footer .icons a {
+				color: rgba(255, 255, 255, 0.5);
+			}
+
+				#footer .icons a:hover {
+					color: #fff;
+				}
+
+		#footer .copyright {
+			color: rgba(255, 255, 255, 0.5);
+			font-size: 0.8em;
+			letter-spacing: 0.225em;
+			list-style: none;
+			padding: 0;
+			text-transform: uppercase;
+		}
+
+			#footer .copyright li {
+				border-left: solid 1px rgba(255, 255, 255, 0.5);
+				display: inline-block;
+				line-height: 1em;
+				margin-left: 1em;
+				padding-left: 1em;
+			}
+
+				#footer .copyright li:first-child {
+					border-left: 0;
+					margin-left: 0;
+					padding-left: 0;
+				}
+
+				#footer .copyright li a {
+					color: inherit;
+				}
+
+					#footer .copyright li a:hover {
+						color: #fff;
+					}
+
+/******************GALERIA******************/
+
+
+.wrapper {
+    text-align:center;
+    display:block;
 }
 
-#pie_pagina .desc_pie{
+.wrapper div {
+    display:inline-block;
 }
 
+.gallery {
+	position:relative;
+    width:250px;
+    height:180px;
+    margin: 20px;
+    justify-content:center;
+    text-align:center;
+    border-radius:x	5px;
+}
+
+/*------------------PROFESORES----------------------------*/
+.profesor{
+	display: block;
+	text-align: center;
+}
+
+.profesor_one{
+	width: 235px;
+	height:auto;
+	justify-content: center;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	margin:0 50px 6vh 50px;
+}
+
+.img_profesores{
+	margin-top:20%;
+	width: 225px;
+  height: 225px;
+  border-radius:50%;
+}
